@@ -11,8 +11,7 @@ function App() {
   return (
     <div className="App">
       {/* Logo Section */}
-      <img src={logo} alt="Spotify Logo" style={{ maxWidth: "100%", height: "auto" }} />
-
+      <img src={logo} alt="Spotify Logo" style={{ width: "100px", height: "auto", marginBottom: "20px" }} />
 
       {/* Main Content Section */}
       <Grid
