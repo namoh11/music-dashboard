@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import ListeningHistory from './ListeningHistory';
-import { Box, Button, Grid2, Modal, Typography } from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
+import { getUserAccessToken } from './spotifyServiceRevised';
 
 function App() {
   const [open, setOpen] = React.useState(false);
@@ -10,6 +11,19 @@ function App() {
   const handleClose = () => setOpen(false);
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
+  useEffect(() => {
+    const fetchAccessToken = async () => {
+      // Replace with actual parameters for authorization code, redirect URI, etc.
+      const code = "YOUR_AUTH_CODE";
+      const redirectUri = "YOUR_REDIRECT_URI";
+      const clientId = "YOUR_CLIENT_ID";
+      const clientSecret = "YOUR_CLIENT_SECRET";
+      const token = await getUserAccessToken(code, redirectUri, clientId, clientSecret);
+      setAccessToken(token);
+    };
+
+    fetchAccessToken();
+  }, []);
 
   return (
     <div className="App">
@@ -38,12 +52,11 @@ function App() {
           <Typography id="modal-modal-title" variant="h6" component="h2" gutterBottom>
             Recently Played Tracks
           </Typography>
-          <ListeningHistory accessToken={accessToken} />
+          {accessToken && <ListeningHistory accessToken={accessToken} />}
         </Box>
       </Modal>
     </div>
   );
-
 }
 
 export default App;
