@@ -31,6 +31,23 @@ export const getListeningHistory = async (accessToken: string): Promise<Track[]>
     return [];
   }
 };
+export const getTopTracks = async (accessToken: string) : Promise<Track[]> =>{
+  try {
+    const response = await axios.get('https://api.spotify.com/v1/me/top/tracks' ,{
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      params: {
+        limit:20, // minimum # of tracks allowed by api
+      },
+    });
+
+    return response.data.items;
+  } catch (error) {
+    console.error('Error fetching top tracks:', error);
+    return [];
+  }
+};
 
 // Function to obtain an access token using client credentials (for server-side usage)
 export const getClientAccessToken = async (): Promise<string | null> => {

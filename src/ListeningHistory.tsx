@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getListeningHistory } from './spotifyService';  // Import from spotifyService.ts
+import { getListeningHistory } from './spotifyServiceRevised';  // grabbing the function i need
 import { List, ListItem, ListItemText } from '@mui/material';
 
 interface Track {
