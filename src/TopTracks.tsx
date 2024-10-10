@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getTopTracks } from './spotifyServiceRevised';  // Import getTopTracks function
 import { List, ListItem, ListItemText } from '@mui/material';
 
-// This interface should reflect the structure of the top tracks from the API
+
 interface TopTrack {
   name: string;
   album: {
@@ -23,7 +23,7 @@ const TopTracks: React.FC<TopTracksProps> = ({ accessToken }) => {
     const fetchTopTracks = async () => {
       try {
         const topTracks = await getTopTracks(accessToken);
-        setTracks(topTracks);  // Ensure the data being set aligns with TopTrack interface
+        setTracks(topTracks);  // structure's off, might have to retailor the data i take 
       } catch (error) {
         console.error('Error fetching top tracks:', error);
       }
