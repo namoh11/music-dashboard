@@ -3,7 +3,7 @@ import axios from 'axios';
 const clientId: string = process.env.REACT_APP_CLIENT_ID || '';
 const clientSecret: string = process.env.REACT_APP_CLIENT_SECRET || '';
 
-interface Track {
+export interface Track {
   track: {
     name: string;
     album: {
