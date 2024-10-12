@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AppBar, Toolbar, Typography, Drawer, List, ListItemText, Divider, Button, CssBaseline } from '@mui/material';
-import Grid2 from '@mui/material/Grid2'; // Stable import for Grid2
+import { Grid } from '@material-ui/core'; // switch from grid2 to grid
 import { ReactComponent as Logo } from './logo.svg';
 import { getListeningHistory, getUserAccessToken, Track } from './spotifyServiceRevised';
 import TopTracks from './TopTracks'; // Import TopTracks component
@@ -64,11 +64,11 @@ const App = () => {
   };
 
   const handleShowTopTracks = () => {
-    setShowTopTracks(!showTopTracks); // Toggle the visibility of TopTracks
+    setShowTopTracks(!showTopTracks); // Toggle visibility of TopTracks
   };
 
   const handleShowListeningHistory = () => {
-    setShowListeningHistory(!showListeningHistory); // Toggle the visibility of Listening History
+    setShowListeningHistory(!showListeningHistory); // Toggle visibility of Listening History
   };
 
   if (!accessToken) {
@@ -92,16 +92,16 @@ const App = () => {
         </Toolbar>
       </AppBar>
 
-      {/* Add margin to avoid AppBar overlapping content */}
+      {/* throwing in another bar so stuff doesn't overlap, like a buffer */}
       <Toolbar />
 
-      <Grid2 container sx={{ height: '90vh', backgroundColor: '#000000', padding: 2 }}>
+      <Grid container sx={{ justifyContent: "center", alignItems: "center",height: '90vh', backgroundColor: '#000000', padding: 2 }}>
         {/* Main Content */}
-        <Grid2 xs={12}>
-          <div>
-            <Logo style={{ width: '150px', height: 'auto' }} />
-            <h1>Spotify Dashboard</h1>
-            {/* Listening history only shows when the button is pressed */}
+        <Grid xs={12}>
+        <div style={{ textAlign: 'center' }}> {/* Centering the content inside the div */}
+      <Logo style={{ width: 'auto', height: 'auto', display: 'block', margin: '0 auto' }} />
+      <h1 style={{ color: '#fff' }}>Spotify Dashboard</h1> 
+            {/*history only shows when the button is pressed */}
             {showListeningHistory && (
               <div>
                 {tracks.length > 0 ? (
@@ -120,18 +120,18 @@ const App = () => {
             )}
           </div>
 
-          {/* Top tracks only show when the button is pressed */}
+          {/* Tracks only show with button press */}
           {showTopTracks && <TopTracks accessToken={accessToken} />}
-        </Grid2>
-      </Grid2>
+        </Grid>
+      </Grid>
     </>
   );
 };
 
-// Wrap App component with ThemeProvider
-const RootApp = () => (
+// Wrap App component with ThemeProvider, just what stackoverflow said
+const RootApp = () => ( // app becomes rootapp?
   <ThemeProvider theme={theme}>
-    <CssBaseline />  {/* Adds base CSS resets for consistent styling */}
+    <CssBaseline />
     <App />
   </ThemeProvider>
 );

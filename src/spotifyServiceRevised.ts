@@ -49,7 +49,7 @@ export const getTopTracks = async (accessToken: string) : Promise<Track[]> =>{
   }
 };
 
-// Function to obtain an access token using client credentials (for server-side usage)
+// grabs access token 
 export const getClientAccessToken = async (): Promise<string | null> => {
   try {
     const response = await axios.post(
@@ -72,7 +72,7 @@ export const getClientAccessToken = async (): Promise<string | null> => {
   }
 };
 
-// Function to obtain a user's access token using an authorization code (for client-side usage)
+// grab user access token with auth code, docs were kinda confusing
 export const getUserAccessToken = async (code: string): Promise<string | null> => {
   try {
     const response = await axios.post(
@@ -104,7 +104,7 @@ export const getUserAccessToken = async (code: string): Promise<string | null> =
   }
 };
 
-// Function to refresh the user's access token (when using refresh tokens)
+// refresh access tokens
 export const refreshAccessToken = async (refreshToken: string): Promise<string | null> => {
   try {
     const response = await axios.post(

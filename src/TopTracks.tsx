@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { getTopTracks } from './spotifyServiceRevised';  // Import getTopTracks function
-import { List, ListItem, ListItemText } from '@mui/material';
-
+import { getTopTracks } from './spotifyServiceRevised';  
+import { List, ListItem, ListItemText, Typography } from '@mui/material';
 
 interface TopTrack {
   name: string;
   album: {
-    images: { url: string }[];  // Array of album images
-    name: string;               // Album name
+    images: { url: string }[];  
+    name: string;               
   };
-  artists: { name: string }[];   // Array of artists
+  artists: { name: string }[];   
 }
 
 interface TopTracksProps {
@@ -23,7 +22,7 @@ const TopTracks: React.FC<TopTracksProps> = ({ accessToken }) => {
     const fetchTopTracks = async () => {
       try {
         const topTracks = await getTopTracks(accessToken);
-        setTracks(topTracks);  // structure's off, might have to retailor the data i take 
+        setTracks(topTracks);  
       } catch (error) {
         console.error('Error fetching top tracks:', error);
       }
@@ -39,16 +38,20 @@ const TopTracks: React.FC<TopTracksProps> = ({ accessToken }) => {
   }
 
   return (
-    <List>
-      {tracks.map((track, index) => (
-        <ListItem key={index}>
-          <ListItemText
-            primary={track.name}
-            secondary={track.artists.map(artist => artist.name).join(', ')}
-          />
-        </ListItem>
-      ))}
-    </List>
+    <div style={{ textAlign: 'center' }}> {/* Center the whole list */}
+      <Typography variant="h4" style={{ marginBottom: '20px' }}>Top Tracks</Typography>
+      <List style={{ display: 'inline-block', textAlign: 'left' }}> {/* Inline-block to center the list, left-align individual items */}
+        {tracks.map((track, index) => (
+          <ListItem key={index} style={{ justifyContent: 'center' }}> {/* Center the content inside each item */}
+            <ListItemText
+              primary={track.name}
+              secondary={track.artists.map(artist => artist.name).join(', ')}
+              style={{ textAlign: 'center' }}  
+            />
+          </ListItem>
+        ))}
+      </List>
+    </div>
   );
 };
 
