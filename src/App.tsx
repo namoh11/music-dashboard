@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AppBar, Toolbar, Typography, Drawer, List, ListItemText, Divider, Button, CssBaseline } from '@mui/material';
-import { Grid } from '@material-ui/core'; // switch from grid2 to grid
+import { Grid } from '@mui/material';// switch from grid2 to grid
 import { ReactComponent as Logo } from './logo.svg';
 import { getListeningHistory, getUserAccessToken, Track } from './spotifyServiceRevised';
 import TopTracks from './TopTracks'; // Import TopTracks component
@@ -99,7 +99,7 @@ const App = () => {
         {/* Main Content */}
         <Grid xs={12}>
         <div style={{ textAlign: 'center' }}> {/* Centering the content inside the div */}
-      <Logo style={{ width: 'auto', height: 'auto', display: 'block', margin: '0 auto' }} />
+      <Logo style={{ display: 'block', margin: '0 auto' }} />
       <h1 style={{ color: '#fff' }}>Spotify Dashboard</h1> 
             {/*history only shows when the button is pressed */}
             {showListeningHistory && (
